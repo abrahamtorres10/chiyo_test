@@ -4,18 +4,19 @@ import {
   FAILED_TO_SAVE_AIRTABLE,
   GENERIC_INVALID_SCHEMA,
   INVALID_DATE_TIME_ISO_FORMAT,
+  INVALID_SCHEMA_MISSING_FIELDS,
 } from "../constants/error_messages.js";
 import { storeSession } from "../services/sessionStorage.js";
 
 const validateInput = (body) => {
   if (!body) {
-    return { isValid: false, mesasge: GENERIC_INVALID_SCHEMA };
+    return { isValid: false, errorMessage: GENERIC_INVALID_SCHEMA };
   }
 
   const { ip, sessionid, querystring, clienttimestamp } = body;
 
   if (!ip || !sessionid || !querystring || !clienttimestamp) {
-    return { isValid: false, errorMessage: GENERIC_INVALID_SCHEMA };
+    return { isValid: false, errorMessage: INVALID_SCHEMA_MISSING_FIELDS };
   }
 
   const date = DateTime.fromISO(clienttimestamp);
