@@ -13,18 +13,14 @@ const storeSessionInAirTable = async ({
     },
   };
 
-  const response = await fetch(
-    process.env.AIRTABLE_BASE_URL + '/sessions',
-    {
-      method: "POST",
-      body: JSON.stringify(records),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer " + process.env.AIRTABLE_ACCESS_TOKEN
-      },
-    }
-  );
+  const response = await fetch(process.env.AIRTABLE_BASE_URL + "/sessions", {
+    method: "POST",
+    body: JSON.stringify(records),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + process.env.AIRTABLE_ACCESS_TOKEN,
+    },
+  });
   // Failure in insertion
   if (!response.ok) {
     console.log(

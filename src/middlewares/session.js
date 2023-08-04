@@ -15,13 +15,13 @@ const validateInput = (body) => {
   const { ip, sessionid, querystring, clienttimestamp } = body;
 
   if (!ip || !sessionid || !querystring || !clienttimestamp) {
-    return { isValid: false, mesasge: GENERIC_INVALID_SCHEMA };
+    return { isValid: false, errorMessage: GENERIC_INVALID_SCHEMA };
   }
 
   const date = DateTime.fromISO(clienttimestamp);
 
   if (!date.isValid) {
-    return { isValid: false, mesasge: INVALID_DATE_TIME_ISO_FORMAT };
+    return { isValid: false, errorMessage: INVALID_DATE_TIME_ISO_FORMAT };
   }
 
   return { isValid: true };
@@ -29,7 +29,7 @@ const validateInput = (body) => {
 
 const sessionReader = async (req, res, next) => {
   let storageInfoId;
-  const { isValid } = validateInput(req.body);
+  const { isValid, errorMessage } = validateInput(req.body);
 
   if (!isValid) {
     return res.status(400).json(errorMessage);
