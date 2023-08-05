@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon — exec babel-node src/index.js",
-    "test": "jest",
+    "test": "jest --coverage",
     "prettier:fix": "prettier --write \"**/*.+(js|jsx|ts|tsx|json|md)\""
   },
   "author": "atorres",
