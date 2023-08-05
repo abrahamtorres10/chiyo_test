@@ -50,7 +50,7 @@
  *                properties:
  *                  airTableRecordId:
  *                    type: string
- *                    description: The user name.   
+ *                    description: The user name.
  *        '500':
  *            description: Failed to save
  *        '400':
