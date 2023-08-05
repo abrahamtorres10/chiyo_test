@@ -66,3 +66,8 @@ Prettify code
 ```bash
 npm run prettier:fix
 ```
+-------
+
+## Application structure
+
+This service contains one single endpoint "/ping" that internally is hooked to a session storage middleware. This service creates a session record into AirTable. If successful, returns the insertion id with HTTP code 201. Otherwise, will throw either 400 or 500 HTTP codes (see swagger documentation for schemas and api responses.)
