@@ -25,4 +25,5 @@ app.listen(PORT, () => {
   console.log(
     `--> CHIYO TEST - ABRAHAM - Express.js Server running on port: ${PORT}`
   );
+  console.log('QUEPEDO', process.env.QUEPEDO)
 });
