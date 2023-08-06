@@ -1,9 +1,4 @@
-const storeSessionInAirTable = async ({
-  ip,
-  sessionid,
-  querystring,
-  clienttimestamp,
-}) => {
+const store = async ({ ip, sessionid, querystring, clienttimestamp }) => {
   const records = {
     fields: {
       ip,
@@ -41,7 +36,7 @@ const storeSessionInAirTable = async ({
   };
 };
 
-const pullSessionsInAirTable = async (maxRecords) => {
+const pull = async (maxRecords) => {
   const response = await fetch(
     process.env.AIRTABLE_BASE_URL +
       `/sessions?maxRecords=${maxRecords}&view=Grid%20view`,
@@ -74,6 +69,6 @@ const pullSessionsInAirTable = async (maxRecords) => {
 };
 
 export default {
-  storeSessionInAirTable,
-  pullSessionsInAirTable,
+  store,
+  pull,
 };

@@ -9,13 +9,11 @@ const fetchSessions = async (req, res) => {
   const { maxItems } = req.query;
   try {
     const { data, error } = await pullSessions(maxItems);
-    return res
-      .status(200)
-      .json({
-        error,
-        data: data?.records,
-        message: error ? FAILED_TO_PULL_SESSIONS_AIRTABLE : "ok",
-      });
+    return res.status(200).json({
+      error,
+      data: data?.records,
+      message: error ? FAILED_TO_PULL_SESSIONS_AIRTABLE : "ok",
+    });
   } catch (e) {
     console.log("-> fetchSessions() error!", e?.message);
     return res.status(500).json({

@@ -16,7 +16,7 @@ describe("AirTable session storage Test Suite", () => {
         }),
       };
       global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
-      const response = await airTableService.storeSessionInAirTable(body);
+      const response = await airTableService.store(body);
       expect(response).toEqual({ data: mockAirInsertId, error: false });
     });
   });
@@ -27,7 +27,7 @@ describe("AirTable session storage Test Suite", () => {
         ok: false,
       };
       global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
-      const response = await airTableService.storeSessionInAirTable(body);
+      const response = await airTableService.store(body);
       expect(response).toEqual({ data: null, error: true });
     });
   });
@@ -40,7 +40,7 @@ describe("AirTable session storage Test Suite", () => {
         json: jest.fn().mockResolvedValue(mockSessionRecords),
       };
       global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
-      const response = await airTableService.pullSessionsInAirTable();
+      const response = await airTableService.pull();
       expect(response).toEqual({
         data: mockSessionRecords,
         error: false,
@@ -51,10 +51,10 @@ describe("AirTable session storage Test Suite", () => {
   describe("when AirTable responds with failure in pulling session records", () => {
     it("should return error flag", async () => {
       const mockFetchResponse = {
-        ok: false
+        ok: false,
       };
       global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
-      const response = await airTableService.pullSessionsInAirTable();
+      const response = await airTableService.pull();
       expect(response).toEqual({ data: null, error: true });
     });
   });
