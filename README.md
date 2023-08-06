@@ -86,7 +86,7 @@ Code follows a functional programming pattern with DI for the AirTable dependenc
 
 # Verify the final product
 
-## Make sure your API is up and running, then run the following command
+## Make sure your API is up and running, then run the following command
 
 ```
 npm run client:run
