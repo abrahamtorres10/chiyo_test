@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import pingRoutes from "./routes/ping.routes.js";
+import sessionRoutes from "./routes/session.routes.js";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { swaggerOptions } from "./swagger.js";
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.json({ type: "application/json" }));
 app.use(restVersion + "/ping", pingRoutes);
+app.use(restVersion + "/session", sessionRoutes);
 
 const specs = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
@@ -25,5 +27,4 @@ app.listen(PORT, () => {
   console.log(
     `--> CHIYO TEST - ABRAHAM - Express.js Server running on port: ${PORT}`
   );
-  console.log('QUEPEDO', process.env.QUEPEDO)
 });

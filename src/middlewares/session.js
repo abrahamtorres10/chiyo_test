@@ -29,7 +29,7 @@ const validateInput = (body) => {
 };
 
 const sessionReader = async (req, res, next) => {
-  let storageInfoId;
+
   const { isValid, errorMessage } = validateInput(req.body);
 
   if (!isValid) {
@@ -37,19 +37,22 @@ const sessionReader = async (req, res, next) => {
   }
 
   try {
-    storageInfoId = await storeSession(req.body);
+    const { error, data } = await storeSession(req.body);
+
+    if (data && !error) {
+      console.log("--> session stored saved with id: ", data);
+      res.locals.newRecordId = data;
+      next();
+    } else {
+      return res.status(500).json(FAILED_TO_SAVE_AIRTABLE);
+    }
+    
   } catch (e) {
     console.log("--> sessionReader() Error", e?.message);
     return res.status(500).json(FAILED_TO_SAVE);
   }
 
-  if (storageInfoId) {
-    console.log("--> session stored saved with id: ", storageInfoId);
-    res.locals.newRecordId = storageInfoId;
-    next();
-  } else {
-    return res.status(500).json(FAILED_TO_SAVE_AIRTABLE);
-  }
+
 };
 
 export { sessionReader };

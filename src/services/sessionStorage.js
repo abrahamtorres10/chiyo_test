@@ -4,4 +4,8 @@ const storeSession = (session) => {
   return aireTableStorage.storeSessionInAirTable(session);
 };
 
-export { storeSession };
+const pullSessions = (maxItems) => {
+  return aireTableStorage.pullSessionsInAirTable(maxItems);
+};
+
+export { storeSession, pullSessions };
