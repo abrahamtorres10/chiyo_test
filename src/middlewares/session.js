@@ -29,7 +29,6 @@ const validateInput = (body) => {
 };
 
 const sessionReader = async (req, res, next) => {
-
   const { isValid, errorMessage } = validateInput(req.body);
 
   if (!isValid) {
@@ -46,13 +45,10 @@ const sessionReader = async (req, res, next) => {
     } else {
       return res.status(500).json(FAILED_TO_SAVE_AIRTABLE);
     }
-    
   } catch (e) {
     console.log("--> sessionReader() Error", e?.message);
     return res.status(500).json(FAILED_TO_SAVE);
   }
-
-
 };
 
 export { sessionReader };

@@ -74,7 +74,10 @@ describe("Session Storage Middleware Test Suite", () => {
       it("should run next fn to with newRecordId", async () => {
         const mockAirTableInsertionId = 12345;
         const nextMock = jest.fn();
-        storeSession.mockReturnValue(mockAirTableInsertionId);
+        storeSession.mockReturnValue({
+          data: mockAirTableInsertionId,
+          error: false,
+        });
         await sessionReader(validReqMockFixture, resMock, nextMock);
         expect(storeSession).toHaveBeenCalledWith(validReqMockFixture.body);
         expect(nextMock).toHaveBeenCalled();
@@ -83,7 +86,10 @@ describe("Session Storage Middleware Test Suite", () => {
     });
     describe("when storeSession does not return the insertion id", () => {
       it("should return 500 http error code with failure message", async () => {
-        storeSession.mockReturnValue(0);
+        storeSession.mockReturnValue({
+          data: null,
+          error: true,
+        });
         await sessionReader(validReqMockFixture, resMock);
         expect(resMock.status).toHaveBeenCalledWith(500);
         expect(resMock.json).toHaveBeenCalledWith(FAILED_TO_SAVE_AIRTABLE);

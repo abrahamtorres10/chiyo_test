@@ -28,20 +28,23 @@ const storeSessionInAirTable = async ({
       response.statusText
     );
     return {
-      data: null, error: true
+      data: null,
+      error: true,
     };
   }
 
   // Success saving new record and returning the record id
   const savedData = await response.json();
   return {
-    data: savedData.id, error: false
+    data: savedData.id,
+    error: false,
   };
 };
 
 const pullSessionsInAirTable = async (maxRecords) => {
   const response = await fetch(
-    process.env.AIRTABLE_BASE_URL + `/sessions?maxRecords=${maxRecords}&view=Grid%20view`,
+    process.env.AIRTABLE_BASE_URL +
+      `/sessions?maxRecords=${maxRecords}&view=Grid%20view`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -57,18 +60,20 @@ const pullSessionsInAirTable = async (maxRecords) => {
       response.statusText
     );
     return {
-      data: null, error: true
+      data: null,
+      error: true,
     };
   }
 
   // Success fetching the data
   const data = await response.json();
   return {
-    data, error: false
+    data,
+    error: false,
   };
 };
 
 export default {
   storeSessionInAirTable,
-  pullSessionsInAirTable
+  pullSessionsInAirTable,
 };

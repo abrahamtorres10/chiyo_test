@@ -9,5 +9,5 @@ export const FAILED_TO_SAVE_AIRTABLE =
   "Failed to store this session in Airtable.";
 export const FAILED_TO_PULL_SESSIONS_AIRTABLE =
   "Failed to fetch session records from AirTable. Please contact your support team";
-  export const FAILED_TO_PULL_SESSIONS_GENERAL_ERROR =
+export const FAILED_TO_PULL_SESSIONS_GENERAL_ERROR =
   "An unknown error ocurren while trying to fetch session records. Please contact your support team";

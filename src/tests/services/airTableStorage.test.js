@@ -17,18 +17,45 @@ describe("AirTable session storage Test Suite", () => {
       };
       global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
       const response = await airTableService.storeSessionInAirTable(body);
-      expect(response).toEqual(mockAirInsertId);
+      expect(response).toEqual({ data: mockAirInsertId, error: false });
     });
   });
 
   describe("when AirTable responds with a failure in insertion", () => {
-    it("should log error and return null value", async () => {
+    it("should log error and return error flag", async () => {
       const mockFetchResponse = {
         ok: false,
       };
       global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
       const response = await airTableService.storeSessionInAirTable(body);
-      expect(response).toEqual(null);
+      expect(response).toEqual({ data: null, error: true });
+    });
+  });
+
+  describe("when AirTable responds with success in pulling session records", () => {
+    it("should return session records", async () => {
+      const mockSessionRecords = [{ r: 1 }, { r: 2 }];
+      const mockFetchResponse = {
+        ok: true,
+        json: jest.fn().mockResolvedValue(mockSessionRecords),
+      };
+      global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
+      const response = await airTableService.pullSessionsInAirTable();
+      expect(response).toEqual({
+        data: mockSessionRecords,
+        error: false,
+      });
+    });
+  });
+
+  describe("when AirTable responds with failure in pulling session records", () => {
+    it("should return error flag", async () => {
+      const mockFetchResponse = {
+        ok: false
+      };
+      global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
+      const response = await airTableService.pullSessionsInAirTable();
+      expect(response).toEqual({ data: null, error: true });
     });
   });
 });
