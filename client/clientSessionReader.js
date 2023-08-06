@@ -7,7 +7,7 @@ function ping() {
       var querystring = window.location.search;
       var sessionid = createSessionID(1000, Number.MAX_SAFE_INTEGER).toString();
       var clienttimestamp = new Date().toISOString();
-      // Ping to service to store session
+      // Ping to service to store session (change the port here if not using 3000)
       fetch("http://localhost:3000/v1/ping", {
         method: "POST",
         body: JSON.stringify({
@@ -23,7 +23,7 @@ function ping() {
     });
 }
 
-window.onload = ping
+window.onload = ping;
 
 function createSessionID(min, max) {
   return Math.random() * (max - min) + min;

@@ -83,3 +83,13 @@ Pulls all records from the session table in AirTable.
 Third Party services errors (AirTable API) are not sent back to the requesting user for safety reasons. The error stack is stored in the logs only.
 
 Code follows a functional programming pattern with DI for the AirTable dependency. Easy to change storage technology in the future if required.
+
+# Verify the final product
+
+## Make sure your API is up and running, then run the following command
+
+```
+npm run client:run
+```
+
+It will open a browser with the Test Client HTML page that will trigger a call to "/ping" service in the API that will store the session info. The javascript file client/clientSessionReader.js contains the code to perform such task. If you changed the port from the previous steps, you ought to also change the port in the javascript code, if not (runnin in port 3000) should work just fine.
