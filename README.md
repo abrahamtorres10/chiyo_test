@@ -9,6 +9,7 @@ docker run -p 3000:3000 public.ecr.aws/hpxpert/chiyo:latest
 in new terminal to test the app (will open a browser with the HTML page with script added)
 
 ```
+npm install
 npm run client:run
 ```
 
