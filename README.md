@@ -1,5 +1,25 @@
 # CHIYO TEST - SESSION MANAGEMENT API
 
+## SUPER QUICK START WITH IMAGE IN ECR
+
+```bash
+docker run -p 3000:3000 public.ecr.aws/hpxpert/chiyo:latest
+```
+
+in new terminal to test the app (will open a browser with the HTML page with script added)
+
+```
+npm run client:run
+```
+
+in another new terminal to verify the session was stored (will pull from AirTable)
+
+```
+curl http://localhost:3000/v1/session
+```
+
+# LOCAL DEVELOPMENT & DEPLOY
+
 ## Steps to run the API service
 
 ### With Docker (recommended)
