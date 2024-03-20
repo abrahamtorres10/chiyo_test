@@ -1,7 +1,7 @@
 {
   "name": "chiyo_test",
   "version": "1.0.0",
-  "description": "Abraham test",
+  "description": "Abraham Test",
   "main": "index.js",
   "type": "module",
   "scripts": {
