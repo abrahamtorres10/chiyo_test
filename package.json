@@ -1,7 +1,7 @@
 {
   "name": "chiyo_test",
   "version": "1.0.0",
-  "description": "Abraham Test",
+  "description": "Just to track a new feature change",
   "main": "index.js",
   "type": "module",
   "scripts": {
